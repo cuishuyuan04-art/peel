@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.4 — 2026-10-19
+- Removed the globe icon from the 语言 / Language menu item so it matches the other items.
+
 ## 0.8.3 — 2026-10-19
 - Language follows the system language on first launch (English on non-Chinese Macs).
 - Language switch moved to the menu bar as **语言 / Language**, readable in both languages; switching now updates open windows immediately.

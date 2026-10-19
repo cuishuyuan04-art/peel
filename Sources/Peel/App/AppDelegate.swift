@@ -169,7 +169,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         langMenu.addItem(item("中文", checked: Settings.lang == .zh) { Settings.lang = .zh })
         langMenu.addItem(item("English", checked: Settings.lang == .en) { Settings.lang = .en })
         let langItem = NSMenuItem(title: "语言 / Language", action: nil, keyEquivalent: "")
-        langItem.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
         langItem.submenu = langMenu
         menu.addItem(langItem)
         menu.addItem(.separator())
