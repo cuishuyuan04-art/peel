@@ -16,6 +16,11 @@
 </p>
 
 <p align="center">
+  <img src="Docs/images/demo.gif" width="720" alt="Demo: hold a file, drop it on a sector">
+  <br><sub>Hold a PNG → convert to PDF, then hold the PDF → Compress</sub>
+</p>
+
+<p align="center">
   <img src="Docs/images/wheel-photo.png" width="280" alt="Wheel for a photo">
   <img src="Docs/images/wheel-photo-convert.png" width="280" alt="Convert sub-menu">
   <img src="Docs/images/wheel-document.png" width="280" alt="Wheel for a Word document">
