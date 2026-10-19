@@ -16,8 +16,8 @@
 </p>
 
 <p align="center">
-  <img src="Docs/images/demo.gif" width="720" alt="Demo: hold a file, drop it on a sector">
-  <br><sub>Hold a PNG → convert to PDF, then hold the PDF → Compress</sub>
+  <img src="Docs/images/demo-en.gif" width="720" alt="Demo: hold a file, drop it on a sector">
+  <br><sub>Hold a file → hover a category to open it → drop on a format. Here a PNG becomes a PDF and a WebP</sub>
 </p>
 
 <p align="center">

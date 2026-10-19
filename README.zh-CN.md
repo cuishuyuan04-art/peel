@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="Docs/images/demo.gif" width="720" alt="演示：按住文件，拖到扇区上">
+  <img src="Docs/images/demo-zh.gif" width="720" alt="演示：按住文件，拖到扇区上">
   <br><sub>按住 PNG → 转成 PDF；再按住这个 PDF → 压缩</sub>
 </p>
 
