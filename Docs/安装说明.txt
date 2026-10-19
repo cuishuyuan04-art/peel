@@ -1,0 +1,54 @@
+Peel — 文件转换小工具（macOS 13 及以上，Apple 芯片和 Intel 都能用）
+
+【安装】
+1. 把 Peel 拖到旁边的“应用程序”文件夹。
+2. 第一次打开：因为 Peel 没有经过苹果公证，双击会提示“无法打开”或“无法验证开发者”。
+   这时打开“系统设置 › 隐私与安全性”，往下翻，找到关于 Peel 的提示，点“仍要打开”，再确认一次即可。
+   以后就可以正常打开了。
+3. 打开后会弹出欢迎窗口，点“开始设置”，在“辅助功能”里勾选 Peel；
+   如果提示“Peel 想要控制访达”，点“允许”。
+
+【使用】
+- Peel 在屏幕右上角的菜单栏里运行（一个右上角翻起的文档小图标），没有窗口。
+- 在访达里按住一个文件不动 1 秒，旁边会弹出轮盘；继续把文件拖到扇区上松手即可。
+  · 拖到分类上停一下（外圈进度条跑满）会展开下一层，拖回中心返回上一层。
+  · 没拖到扇区上就松手，轮盘会自动收回。
+  · 可以先选中多个文件再长按，批量处理。
+- 转换结果放在原文件旁边，原文件不会改动。
+- 截图：按 ⌥⇧S（Option+Shift+S）框选区域，截好后弹出轮盘：保存（选位置）、复制、识别文字、钉在屏幕上。
+  · 截图会自动复制到剪贴板，但不会自动保存成文件；按 Esc 或点外面关闭即可。
+  · 也可以按住轮盘中心的缩略图，直接拖进访达文件夹（保存到那里）或微信、邮件（直接发送）。
+  · 第一次截图需要在“系统设置 › 隐私与安全性 › 屏幕录制”里打开 Peel，然后重新打开 Peel。
+- 不想长按：在访达选中文件后按 ⌥⇧P（Option+Shift+P），轮盘在鼠标处弹出；
+  或右键文件 › 服务 › 用 Peel 处理（若看不到，到“系统设置 › 键盘 › 键盘快捷键 › 服务 › 文件和文件夹”里勾选）。
+- 菜单栏图标 › 设置… 里可以调长按时长、换快捷键、切换中英文；正在处理的任务可以从菜单栏图标里停止。
+
+【转换组件（第一次打开时一键安装）】
+Word / PPT / Excel 转换、PDF 压缩、PNG/WebP、音视频等功能需要额外的组件。
+第一次打开 Peel、设置完权限后，会询问是否“一键安装”，点“现在安装”即可：
+- 如果电脑上没有 Homebrew，会自动打开一个终端窗口来安装它：按提示输入开机密码（输入时不显示）、按回车，等它跑完；
+- 之后 Peel 会自动装好所有组件（约 1 GB，5~20 分钟），右上角的小气泡会显示进度。
+- 在中国大陆请勾选“使用国内镜像”（默认已按系统地区勾选）。
+以后也可以随时在菜单栏 Peel 图标 ›“组件…”里查看和补装。
+照片压缩、图片转换、PDF 合并 / 拆分 / 涂黑等功能不需要组件，装好就能用。
+
+————————————————————————
+
+Peel — a tiny file converter (macOS 13+, Apple silicon & Intel)
+
+Install
+1. Drag Peel into the Applications folder.
+2. First launch: Peel isn't notarized by Apple, so macOS will block it. Open System Settings › Privacy & Security,
+   scroll down, click “Open Anyway” next to the Peel message, and confirm.
+3. In the welcome window click “Set Up”, enable Peel under Accessibility, and allow it to control Finder.
+
+Use
+- Peel lives in the menu bar. In Finder, press and hold a file for 1 second to open the wheel,
+  then drag the file onto a sector and release. Results are saved next to the original.
+- Screenshots: press ⌥⇧S, select an area, then Save / Copy / Copy Text (OCR) / Pin from the wheel.
+  The screenshot is copied to the clipboard but never saved automatically. Drag the thumbnail to any folder or app.
+- No long-press needed: select files in Finder and press ⌥⇧P, or right-click › Services › 用 Peel 处理
+  (enable it in System Settings › Keyboard › Keyboard Shortcuts › Services if it's missing).
+- On first launch Peel offers to install extra components (Office conversions, PDF compression, audio/video…) in one click.
+  If Homebrew is missing, a Terminal window opens to install it (enter your Mac password when asked).
+  You can check or reinstall them anytime from the menu bar icon › Components….
