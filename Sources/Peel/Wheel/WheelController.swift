@@ -480,6 +480,17 @@ final class WheelController: ObservableObject {
         appeared = true
     }
 
+    /// 仅供演示动画使用：直接设定悬停的扇区和外圈进度
+    func debugDemo(files: [URL], hover: Int?, dwell: Double) {
+        if self.files != files {
+            self.files = files
+            stack = [Catalog.root(for: files)]
+        }
+        hovered = hover.map { .sector($0) }
+        dwellProgress = dwell
+        appeared = true
+    }
+
     /// 仅供 DebugRender 使用
     func debugSetup(files: [URL], open: Int?, hover: Int?) {
         self.files = files

@@ -19,6 +19,17 @@ if let first = cliArgs.first, ["--render", "--icon", "--icon-variants", "--ghost
     dispatchMain()
 }
 
+// 宣传演示动画：逐帧渲染（Peel --demo 输出文件夹 [--en|--zh]）
+if cliArgs.first == "--demo", cliArgs.count >= 2 {
+    if cliArgs.contains("--en") { Settings.langOverride = .en }
+    if cliArgs.contains("--zh") { Settings.langOverride = .zh }
+    DispatchQueue.main.async {
+        MainActor.assumeIsolated { DemoMovie.run(outDir: URL(fileURLWithPath: cliArgs[1])) }
+        exit(0)
+    }
+    dispatchMain()
+}
+
 MainActor.assumeIsolated {
     let app = NSApplication.shared
     let delegate = AppDelegate()

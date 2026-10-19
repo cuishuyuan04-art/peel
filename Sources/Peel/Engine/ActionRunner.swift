@@ -292,7 +292,7 @@ enum ActionRunner {
         }
 
         let names = r.outputs.count == 1
-            ? "「\(r.outputs[0].lastPathComponent)」"
+            ? t("「\(r.outputs[0].lastPathComponent)」", " “\(r.outputs[0].lastPathComponent)”")
             : t(" \(r.outputs.count) 个文件", " \(r.outputs.count) files")
         var text = t("已生成\(names)", "Created\(names)")
         if case .compress = action, r.before > 0 {

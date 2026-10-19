@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.1 — 2026-10-19
+- New illustrated demo animation (English and Chinese) in the Getting Started guide and the README; the app download is smaller.
+- English "Created" message uses English quotes (was showing Chinese brackets).
+- Dev: `Peel --demo DIR [--en|--zh] [--frames …]` renders the demo animation frame by frame.
+
 ## 0.9.0 — 2026-10-19
 - **Getting Started guide** on first launch: choose your language first, then a demo of the wheel, permissions with live status (ticks itself once granted), one-click component install, and the three ways to open the wheel. Reopen it from the menu bar icon › Getting Started….
 - The Services entry is now **Process with Peel** on English systems (用 Peel 处理 on Chinese ones); the Finder permission prompt is localized too.
