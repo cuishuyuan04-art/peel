@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2 — 2026-10-19
+- The default watermark text now follows the app language (English UI no longer starts with Chinese text).
+- "1 page" instead of "1 pages" in the watermark window.
+- README: screenshots of watermark, signature, redaction and settings.
+
 ## 0.8.1 — 2026-10-19
 - Fixed: in **Redact**, the black box landed away from where you dragged (offset by the page margin).
 - Fixed the release build script on GitHub Actions.

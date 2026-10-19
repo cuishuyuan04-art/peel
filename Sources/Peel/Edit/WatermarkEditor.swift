@@ -54,8 +54,8 @@ struct WatermarkEditor: View {
     private var note: String {
         if isPDF {
             return style.bake
-                ? t("共 \(pageCount) 页 · 防移除：页面会转成图片，文字不能再复制", "\(pageCount) pages · tamper-proof: pages become images")
-                : t("共 \(pageCount) 页 · 保留可复制的文字", "\(pageCount) pages · text stays selectable")
+                ? t("共 \(pageCount) 页 · 防移除：页面会转成图片，文字不能再复制", "\(pageCount) page\(pageCount == 1 ? "" : "s") · tamper-proof: pages become images")
+                : t("共 \(pageCount) 页 · 保留可复制的文字", "\(pageCount) page\(pageCount == 1 ? "" : "s") · text stays selectable")
         }
         return t("会生成一个副本，原图不变", "Creates a copy; the original is untouched")
     }

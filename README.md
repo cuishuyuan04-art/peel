@@ -45,6 +45,22 @@ The wheel only shows what makes sense for that file type — a Word document get
 | **Screenshots** | **⌥⇧S** to select an area → Save (pick a folder) / Copy / Copy Text (on-device OCR) / Pin to screen. Never auto-saved: it only goes to the clipboard unless you save it or drag the thumbnail out |
 | **Other** | Zip, Chinese / English UI, settings window (⌘,) for timings and shortcuts |
 
+## Screenshots
+
+<p align="center">
+  <img src="Docs/images/watermark.png" width="720" alt="Watermark editor with live preview">
+  <br><sub>Watermark a PDF or photo with a live preview — optionally flattened so it can't be removed</sub>
+</p>
+
+| Sign a PDF | Redact (content is really removed) |
+|---|---|
+| <img src="Docs/images/sign-result.jpg" alt="Signed PDF"> | <img src="Docs/images/redact-result.jpg" alt="Redacted phone number"> |
+
+<p align="center">
+  <img src="Docs/images/settings.png" width="380" alt="Settings window">
+  <br><sub>Settings: hold / hover timings, shortcuts, language</sub>
+</p>
+
 ## Install
 
 1. Download `Peel-x.y.z.dmg` from [Releases](../../releases/latest) and drag **Peel** into Applications. Works on Apple silicon and Intel, macOS 13 or later.

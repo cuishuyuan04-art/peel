@@ -169,14 +169,25 @@ enum CLI {
                     out = [FileKind.of(f) == .pdf ? try MarkEngine.watermarkPDF(f, style: st) : try MarkEngine.watermarkImage(f, style: st)]
                 case "fonts":
                     print(SignatureStore.handwritingFonts.map(\.label))
-                case "sign":    // 用打字签名签在最后一页右下角，加日期
+                case "sign":    // 打字签名，默认签在最后一页右下角并加日期；参数：名字[@签名左下角x,y@日期左上角x,y]（页面比例）
                     let n = PDFDocument(url: f)?.pageCount ?? 1
+                    let parts = p.split(separator: "@").map(String.init)
+                    let xy = { (i: Int) -> CGPoint? in
+                        guard parts.count > i else { return nil }
+                        let v = parts[i].split(separator: ",").compactMap { Double($0) }
+                        return v.count == 2 ? CGPoint(x: v[0], y: v[1]) : nil
+                    }
+                    let name = parts.first.flatMap { $0.isEmpty ? nil : $0 } ?? "Shuyuan"
                     guard let font = SignatureStore.handwritingFonts.first,
-                          let img = SignatureStore.typed(p.isEmpty ? "Shuyuan" : p, font: font.name) else { print("ERR no font"); break }
-                    let w: CGFloat = 0.28, h = w * CGFloat(img.height) / CGFloat(img.width) * 0.707
-                    let r = CGRect(x: 0.62, y: 0.8, width: w, height: h)
+                          let img = SignatureStore.typed(name, font: font.name) else { print("ERR no font"); break }
+                    let w: CGFloat = xy(1) == nil ? 0.28 : 0.18, h = w * CGFloat(img.height) / CGFloat(img.width) * 0.707
+                    let r = xy(1).map { CGRect(x: $0.x, y: $0.y - h, width: w, height: h) }
+                        ?? CGRect(x: 0.62, y: 0.8, width: w, height: h)
+                    let dateRect = xy(2).map { CGRect(x: $0.x, y: $0.y, width: 0.2, height: 0.018) }
+                        ?? CGRect(x: 0.62, y: r.maxY + 0.008, width: 0.25, height: 0.02)
+                    let today = ISO8601DateFormatter.string(from: Date(), timeZone: .current, formatOptions: [.withFullDate])
                     out = [try MarkEngine.sign(f, placements: [SignaturePlacement(page: n - 1, image: img, rect: r,
-                                                   date: ("2026-10-16", CGRect(x: 0.62, y: r.maxY + 0.008, width: 0.25, height: 0.02)))])]
+                                                   date: (today, dateRect))])]
                 case "instances":
                     let img = try ImageEngine.load(f, maxPixel: 1600)
                     let c = PortraitEngine.faceCenter(img)

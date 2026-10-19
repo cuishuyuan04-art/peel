@@ -43,6 +43,22 @@
 | **截图** | **⌥⇧S** 框选 → 保存（选位置）/ 复制 / 识别文字（本地 OCR）/ 钉在屏幕上。不会自动保存，只复制到剪贴板；缩略图可直接拖到文件夹或其他 App |
 | **其他** | ZIP 压缩、中英文界面、设置窗口（⌘,）里调时长和快捷键 |
 
+## 截图
+
+<p align="center">
+  <img src="Docs/images/watermark.png" width="720" alt="加水印窗口">
+  <br><sub>给 PDF 或照片加水印，实时预览；可选「防移除」，水印无法被删掉</sub>
+</p>
+
+| PDF 签名 | 涂黑（内容被真正移除） |
+|---|---|
+| <img src="Docs/images/sign-result.jpg" alt="签名效果"> | <img src="Docs/images/redact-result.jpg" alt="涂黑效果"> |
+
+<p align="center">
+  <img src="Docs/images/settings.png" width="380" alt="设置窗口">
+  <br><sub>设置窗口：长按 / 悬停时长、快捷键、语言</sub>
+</p>
+
 ## 安装
 
 1. 在 [Releases](../../releases/latest) 下载 `Peel-版本号.dmg`，把 Peel 拖进「应用程序」。支持 Apple 芯片和 Intel，macOS 13 及以上。

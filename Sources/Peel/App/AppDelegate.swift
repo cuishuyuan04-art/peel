@@ -49,11 +49,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         NSApp.servicesProvider = ServiceProvider()
         NSUpdateDynamicServices()
 
-        if CommandLine.arguments.contains("--settings") { SettingsWindow.open() }   // 开发用：启动即打开设置
-        // 开发用：启动即打开涂黑编辑器（--redact-editor 文件）
-        if let i = CommandLine.arguments.firstIndex(of: "--redact-editor"), CommandLine.arguments.indices.contains(i + 1) {
-            let f = URL(fileURLWithPath: CommandLine.arguments[i + 1])
-            EditorWindow.open(.redact, file: f, title: LText("涂黑", "Redact"))
+        // 开发用：启动即打开某个窗口，方便截图检查（--en 临时用英文界面）
+        //   --settings  /  --editor redact|watermark|sign|crop|addBackground|idPhoto 文件
+        let args = CommandLine.arguments
+        if args.contains("--en") { Settings.langOverride = .en }
+        if args.contains("--settings") { SettingsWindow.open() }
+        if let i = args.firstIndex(of: "--editor"), args.indices.contains(i + 2) {
+            let editors: [String: (PeelAction, LText)] = [
+                "redact": (.redact, LText("涂黑", "Redact")), "watermark": (.watermark, LText("加水印", "Watermark")),
+                "sign": (.sign, LText("签名", "Sign")), "crop": (.crop, LText("裁剪", "Crop")),
+                "addBackground": (.addBackground, LText("加背景", "Add Background")),
+                "idPhoto": (.idPhoto, LText("证件照", "ID Photo")),
+            ]
+            if let (action, title) = editors[args[i + 1]] {
+                EditorWindow.open(action, file: URL(fileURLWithPath: args[i + 2]), title: title)
+            }
         }
 
         if !Settings.didPromptPermissions {

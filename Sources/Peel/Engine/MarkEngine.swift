@@ -5,7 +5,7 @@ import UniformTypeIdentifiers
 
 /// 水印参数
 struct WatermarkStyle {
-    var text = "仅供申请使用"
+    var text = t("仅供申请使用", "For application use only")
     var color: NSColor = .gray
     var opacity: CGFloat = 0.22
     /// 字号：页面短边的比例
