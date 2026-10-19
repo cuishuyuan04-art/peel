@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.1 — 2026-10-19
+- Fixed: in **Redact**, the black box landed away from where you dragged (offset by the page margin).
+- Fixed the release build script on GitHub Actions.
+
 ## 0.8.0 — 2026-10-19
 First public release.
 - English README, MIT license, privacy note, automatic DMG builds on GitHub.

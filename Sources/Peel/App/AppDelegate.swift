@@ -50,6 +50,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         NSUpdateDynamicServices()
 
         if CommandLine.arguments.contains("--settings") { SettingsWindow.open() }   // 开发用：启动即打开设置
+        // 开发用：启动即打开涂黑编辑器（--redact-editor 文件）
+        if let i = CommandLine.arguments.firstIndex(of: "--redact-editor"), CommandLine.arguments.indices.contains(i + 1) {
+            let f = URL(fileURLWithPath: CommandLine.arguments[i + 1])
+            EditorWindow.open(.redact, file: f, title: LText("涂黑", "Redact"))
+        }
 
         if !Settings.didPromptPermissions {
             Settings.didPromptPermissions = true

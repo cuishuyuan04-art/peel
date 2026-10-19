@@ -5,4 +5,4 @@ cd "$(dirname "$0")/.."
 source scripts/env.sh
 
 assemble_app
-echo "✓ 已生成 $APP"
+echo "✓ 已生成 ${APP}"

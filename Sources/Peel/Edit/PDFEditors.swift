@@ -115,6 +115,7 @@ struct RedactEditor: View {
     @State private var found: Int?
 
     private let dpi: CGFloat = 110
+    private static let area = "redactArea"
 
     var body: some View {
         EditorFrame(applyTitle: t("涂黑并生成", "Redact & Create"), canApply: total > 0,
@@ -135,27 +136,31 @@ struct RedactEditor: View {
                     if let pageImage, let page = doc?.page(at: pageIndex) {
                         let size = CGSize(width: pageImage.width, height: pageImage.height)
                         let d = aspectFit(size, in: CGRect(origin: .zero, size: geo.size))
+                        // 页面、黑框、拖动手势都用同一个坐标系（整个区域，原点左上），避免偏移重复计算
                         ZStack(alignment: .topLeading) {
                             Image(decorative: pageImage, scale: 1)
                                 .resizable()
                                 .frame(width: d.width, height: d.height)
                                 .shadow(color: .black.opacity(0.2), radius: 6, y: 2)
-                                .offset(x: d.minX, y: d.minY)
+                                .position(x: d.midX, y: d.midY)
                                 .gesture(drawGesture(page: page, d: d, imageSize: size))
                             ForEach(Array((boxes[pageIndex] ?? []).enumerated()), id: \.offset) { i, box in
                                 let r = toView(box, page: page, d: d, imageSize: size)
                                 Rectangle().fill(Color.black)
                                     .frame(width: r.width, height: r.height)
-                                    .offset(x: r.minX, y: r.minY)
+                                    .position(x: r.midX, y: r.midY)
                                     .onTapGesture { boxes[pageIndex]?.remove(at: i) }
                                     .help(t("点击删除", "Click to remove"))
                             }
                             if let drawing {
                                 Rectangle().fill(Color.black.opacity(0.6))
                                     .frame(width: drawing.width, height: drawing.height)
-                                    .offset(x: drawing.minX, y: drawing.minY)
+                                    .position(x: drawing.midX, y: drawing.midY)
+                                    .allowsHitTesting(false)
                             }
                         }
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .coordinateSpace(name: Self.area)
                     } else {
                         ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
@@ -207,11 +212,9 @@ struct RedactEditor: View {
     }
 
     private func drawGesture(page: PDFPage, d: CGRect, imageSize: CGSize) -> some Gesture {
-        DragGesture(minimumDistance: 3)
+        DragGesture(minimumDistance: 3, coordinateSpace: .named(Self.area))
             .onChanged { v in
-                // 手势坐标相对图片，换成相对整个区域
-                let a = CGPoint(x: v.startLocation.x + d.minX, y: v.startLocation.y + d.minY)
-                let b = CGPoint(x: v.location.x + d.minX, y: v.location.y + d.minY)
+                let a = v.startLocation, b = v.location
                 drawing = CGRect(x: min(a.x, b.x), y: min(a.y, b.y), width: abs(a.x - b.x), height: abs(a.y - b.y))
                     .intersection(d)
             }

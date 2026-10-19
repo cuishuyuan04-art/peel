@@ -22,4 +22,4 @@ rm -f "$DMG"
 hdiutil create -volname "Peel" -srcfolder "$STAGE" -ov -format UDZO "$DMG" >/dev/null
 rm -rf "$(dirname "$STAGE")"
 
-echo "✓ 已生成 $DMG（$(du -h "$DMG" | cut -f1)）"
+echo "✓ 已生成 ${DMG}（$(du -h "$DMG" | cut -f1)）"
