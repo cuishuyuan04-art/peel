@@ -47,7 +47,7 @@ Use
   then drag the file onto a sector and release. Results are saved next to the original.
 - Screenshots: press ⌥⇧S, select an area, then Save / Copy / Copy Text (OCR) / Pin from the wheel.
   The screenshot is copied to the clipboard but never saved automatically. Drag the thumbnail to any folder or app.
-- No long-press needed: select files in Finder and press ⌥⇧P, or right-click › Services › 用 Peel 处理
+- No long-press needed: select files in Finder and press ⌥⇧P, or right-click › Services › Process with Peel
   (enable it in System Settings › Keyboard › Keyboard Shortcuts › Services if it's missing).
 - On first launch Peel offers to install extra components (Office conversions, PDF compression, audio/video…) in one click.
   If Homebrew is missing, a Terminal window opens to install it (enter your Mac password when asked).

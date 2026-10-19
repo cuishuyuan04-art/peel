@@ -53,7 +53,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         //   --settings  /  --editor redact|watermark|sign|crop|addBackground|idPhoto 文件
         let args = CommandLine.arguments
         if args.contains("--en") { Settings.langOverride = .en }
+        if args.contains("--zh") { Settings.langOverride = .zh }
         if args.contains("--settings") { SettingsWindow.open() }
+        if let i = args.firstIndex(of: "--onboarding") {
+            OnboardingWindow.open(startAt: args.indices.contains(i + 1) ? Int(args[i + 1]) ?? 0 : 0)
+        }
         if let i = args.firstIndex(of: "--editor"), args.indices.contains(i + 2) {
             let editors: [String: (PeelAction, LText)] = [
                 "redact": (.redact, LText("涂黑", "Redact")), "watermark": (.watermark, LText("加水印", "Watermark")),
@@ -67,58 +71,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
 
         if !Settings.didPromptPermissions {
-            Settings.didPromptPermissions = true
-            requestPermissions()
+            OnboardingWindow.open()     // 第一次启动：使用引导（选语言、权限、组件）
         } else if !Settings.didOfferComponents {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { Setup.offerInstallAll(silentIfComplete: true) }
-        }
-    }
-
-    /// 首次启动：说明用法，再请求辅助功能 + Finder 自动化权限
-    private func requestPermissions() {
-        NSApp.activate(ignoringOtherApps: true)
-        let alert = NSAlert()
-        alert.messageText = t("欢迎使用 Peel 🍊", "Welcome to Peel 🍊")
-        alert.informativeText = t("""
-            Peel 在屏幕右上角的菜单栏里运行，没有窗口。
-
-            用法：在访达里按住一个文件不动 \(holdLabel(Settings.holdDuration))，旁边会弹出轮盘；继续把文件拖到扇区上松手，就会在原文件旁边生成转换或压缩后的副本。
-
-            不想长按的话：在访达里选中文件后按 \(Settings.wheelShortcut.label)，或右键 › 服务 › 用 Peel 处理。
-
-            截图：按 \(Settings.snapShortcut.label) 框选，截好后弹出轮盘，可以保存、复制、识别文字、钉在屏幕上。
-
-            第一次使用需要两项权限：
-            • 辅助功能：判断你按住的是不是文件
-            • 控制“访达”：读取你选中的文件
-
-            点“开始设置”后，在打开的设置里勾选 Peel 即可。
-            """, """
-            Peel lives in the menu bar — it has no window.
-
-            How to use: in Finder, press and hold a file for \(holdLabel(Settings.holdDuration)) to open the wheel, then drag the file onto a sector and release. The result is saved next to the original.
-
-            No long-press? Select files in Finder and press \(Settings.wheelShortcut.label), or right-click › Services › 用 Peel 处理.
-
-            Screenshots: press \(Settings.snapShortcut.label), select an area, then save, copy, extract text or pin it from the wheel.
-
-            Peel needs two permissions:
-            • Accessibility: to tell whether you're holding a file
-            • Control Finder: to read the selected files
-
-            Click “Set Up” and enable Peel in the settings that open.
-            """)
-        alert.addButton(withTitle: t("开始设置", "Set Up"))
-        alert.addButton(withTitle: t("稍后", "Later"))
-        guard alert.runModal() == .alertFirstButtonReturn else {
-            Setup.offerInstallAll(silentIfComplete: true)
-            return
-        }
-        if !AXIsProcessTrusted() { FinderBridge.openAccessibilitySettings() }
-        FinderBridge.fetchSelection(timeout: 60) { _ in }
-        // 权限设置完，接着问要不要一键安装转换组件
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            Setup.offerInstallAll(silentIfComplete: true)
         }
     }
 
@@ -174,7 +129,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.addItem(.separator())
         menu.addItem(item(Setup.isInstalling ? t("组件（正在安装…）", "Components (installing…)")
                                               : t("组件…", "Components…")) { Setup.showStatus() })
-        menu.addItem(item(t("使用说明…", "How to Use…")) { [weak self] in self?.requestPermissions() })
+        menu.addItem(item(t("使用引导…", "Getting Started…")) { OnboardingWindow.open() })
         menu.addItem(item(t("关于 Peel", "About Peel")) { Self.showAbout() })
         menu.addItem(item(t("退出 Peel", "Quit Peel")) { NSApp.terminate(nil) })
     }

@@ -51,6 +51,9 @@ assemble_app() {
     cp "$bin" "$app/Contents/MacOS/Peel"
     cp Resources/Info.plist "$app/Contents/Info.plist"
     [ -f Resources/AppIcon.icns ] && cp Resources/AppIcon.icns "$app/Contents/Resources/AppIcon.icns"
+    # 引导动图、中英文本地化（右键服务名称、权限弹窗说明）
+    cp -R Resources/Onboarding "$app/Contents/Resources/"
+    cp -R Resources/*.lproj "$app/Contents/Resources/"
     # 构建号 = 编译时间，菜单和“关于 Peel”里能看到，一眼区分是哪一次编译
     /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $(date +%Y%m%d.%H%M)" "$app/Contents/Info.plist"
     sign_app "$app"

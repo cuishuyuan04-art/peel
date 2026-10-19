@@ -35,7 +35,7 @@
 Moving the mouse within the first second is an ordinary Finder drag, so normal file moves still work.
 Select several files first to process them in one go.
 
-**No long-press?** Select files in Finder and press **⌥⇧P**, or right-click › Services › **用 Peel 处理** (Process with Peel).
+**No long-press?** Select files in Finder and press **⌥⇧P**, or right-click › Services › **Process with Peel**.
 
 The wheel only shows what makes sense for that file type — a Word document gets PDF / HTML / TXT, a photo gets Convert / Compress / Edit.
 
@@ -70,14 +70,14 @@ The wheel only shows what makes sense for that file type — a Word document get
 
 1. Download `Peel-x.y.z.dmg` from [Releases](../../releases/latest) and drag **Peel** into Applications. Works on Apple silicon and Intel, macOS 13 or later.
 2. Peel isn't notarized by Apple, so the first launch is blocked. Open **System Settings › Privacy & Security**, scroll down and click **Open Anyway** next to the Peel message.
-3. Follow the welcome window to grant permissions (below).
+3. A short guide opens: pick your language, grant permissions (below) and optionally install components. Reopen it anytime from the menu bar icon › Getting Started….
 4. Peel offers to install the extra command-line tools it uses in one click (via Homebrew). You can check them anytime under menu-bar icon › Components….
 
 ### Permissions
 
 | Permission | Why |
 |---|---|
-| Accessibility | To tell whether the thing you're holding is a file (not a title bar or sidebar) |
+| Accessibility (recommended) | Makes long-press precise — the wheel only appears when you hold a file, not the title bar or empty space |
 | Automation › Finder | To read which files are selected |
 | Screen Recording | Only for screenshots (macOS requires it for every screenshot tool) |
 
