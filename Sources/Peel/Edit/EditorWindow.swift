@@ -129,8 +129,9 @@ struct ColorSwatch: View {
 
     var body: some View {
         ZStack {
+            // 选中圈画在圆的内侧（strokeBorder），不会超出边界被滚动区域裁掉
             Circle()
-                .stroke(PeelColors.ring, lineWidth: 2.5)
+                .strokeBorder(PeelColors.ring, lineWidth: 2.5)
                 .opacity(selected ? 1 : 0)
             Circle()
                 .fill(color)

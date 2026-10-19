@@ -11,9 +11,19 @@ enum Settings {
     /// 开发渲染时临时指定语言，不写入偏好
     static var langOverride: Lang?
 
+    /// 没选过语言时跟随系统：系统首选语言是中文就用中文，否则英文
     static var lang: Lang {
-        get { langOverride ?? Lang(rawValue: d.string(forKey: "lang") ?? "") ?? .zh }
-        set { d.set(newValue.rawValue, forKey: "lang") }
+        get { langOverride ?? Lang(rawValue: d.string(forKey: "lang") ?? "") ?? systemLang }
+        set {
+            d.set(newValue.rawValue, forKey: "lang")
+            NotificationCenter.default.post(name: langChanged, object: nil)
+        }
+    }
+
+    static let langChanged = Notification.Name("PeelLangChanged")
+
+    private static var systemLang: Lang {
+        (Locale.preferredLanguages.first ?? "").hasPrefix("zh") ? .zh : .en
     }
 
     static let defaultHold = 1.0

@@ -164,6 +164,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let settings = item(t("设置…", "Settings…")) { SettingsWindow.open() }
         settings.keyEquivalent = ","
         menu.addItem(settings)
+        // 语言放在菜单里、标题中英都写：看不懂当前语言的人也能找到
+        let langMenu = NSMenu()
+        langMenu.addItem(item("中文", checked: Settings.lang == .zh) { Settings.lang = .zh })
+        langMenu.addItem(item("English", checked: Settings.lang == .en) { Settings.lang = .en })
+        let langItem = NSMenuItem(title: "语言 / Language", action: nil, keyEquivalent: "")
+        langItem.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
+        langItem.submenu = langMenu
+        menu.addItem(langItem)
         menu.addItem(.separator())
         menu.addItem(item(Setup.isInstalling ? t("组件（正在安装…）", "Components (installing…)")
                                               : t("组件…", "Components…")) { Setup.showStatus() })

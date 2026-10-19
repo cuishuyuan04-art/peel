@@ -25,21 +25,25 @@ final class SettingsWindow: NSObject, NSWindowDelegate {
         window.isReleasedWhenClosed = false
         window.delegate = self
         let size = NSSize(width: 480, height: 640)
-        window.contentView = NSHostingView(rootView: SettingsView(retitle: { [weak window] in
-            window?.title = t("Peel 设置", "Peel Settings")
-        }).frame(width: size.width, height: size.height))
+        window.contentView = NSHostingView(rootView: SettingsView().frame(width: size.width, height: size.height))
         window.setContentSize(size)
         window.center()
+        // 从菜单栏切换语言后，标题跟着变
+        langObserver = NotificationCenter.default.addObserver(forName: Settings.langChanged, object: nil, queue: .main) {
+            [weak window] _ in window?.title = t("Peel 设置", "Peel Settings")
+        }
     }
 
+    private var langObserver: NSObjectProtocol?
+
     func windowWillClose(_ notification: Notification) {
+        if let langObserver { NotificationCenter.default.removeObserver(langObserver) }
         if SettingsWindow.current === self { SettingsWindow.current = nil }
     }
 }
 
 private struct SettingsView: View {
-    let retitle: () -> Void
-
+    /// 语言在菜单栏里切换；切换后整页重绘
     @State private var lang = Settings.lang
     @State private var longPress = Settings.longPressEnabled
     @State private var hold = Settings.holdDuration
@@ -86,11 +90,6 @@ private struct SettingsView: View {
             }
 
             Section(t("通用", "General")) {
-                Picker(t("语言", "Language"), selection: $lang) {
-                    Text("中文").tag(Lang.zh)
-                    Text("English").tag(Lang.en)
-                }
-                .onChange(of: lang) { Settings.lang = $0; retitle() }
                 Toggle(t("安装组件时使用国内镜像", "Use China mirrors when installing components"), isOn: $mirror)
                     .onChange(of: mirror) { Settings.useChinaMirror = $0 }
             }
@@ -110,7 +109,8 @@ private struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .id(lang)   // 切换语言后整页重绘
+        .id(lang)
+        .onReceive(NotificationCenter.default.publisher(for: Settings.langChanged)) { _ in lang = Settings.lang }
     }
 
     private func slider(_ title: String, value: Binding<Double>, range: ClosedRange<Double>,

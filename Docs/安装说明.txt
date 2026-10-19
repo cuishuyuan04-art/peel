@@ -21,7 +21,7 @@ Peel — 文件转换小工具（macOS 13 及以上，Apple 芯片和 Intel 都�
   · 第一次截图需要在“系统设置 › 隐私与安全性 › 屏幕录制”里打开 Peel，然后重新打开 Peel。
 - 不想长按：在访达选中文件后按 ⌥⇧P（Option+Shift+P），轮盘在鼠标处弹出；
   或右键文件 › 服务 › 用 Peel 处理（若看不到，到“系统设置 › 键盘 › 键盘快捷键 › 服务 › 文件和文件夹”里勾选）。
-- 菜单栏图标 › 设置… 里可以调长按时长、换快捷键、切换中英文；正在处理的任务可以从菜单栏图标里停止。
+- 菜单栏图标 › 设置… 里可以调长按时长、换快捷键；菜单栏图标 › 语言 / Language 切换中英文；正在处理的任务可以从菜单栏图标里停止。
 
 【转换组件（第一次打开时一键安装）】
 Word / PPT / Excel 转换、PDF 压缩、PNG/WebP、音视频等功能需要额外的组件。
@@ -52,3 +52,4 @@ Use
 - On first launch Peel offers to install extra components (Office conversions, PDF compression, audio/video…) in one click.
   If Homebrew is missing, a Terminal window opens to install it (enter your Mac password when asked).
   You can check or reinstall them anytime from the menu bar icon › Components….
+- Switch between English and Chinese under the menu bar icon › 语言 / Language.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.3 — 2026-10-19
+- Language follows the system language on first launch (English on non-Chinese Macs).
+- Language switch moved to the menu bar as **语言 / Language**, readable in both languages; switching now updates open windows immediately.
+- Fixed the color swatch's selection ring being clipped on the left.
+
 ## 0.8.2 — 2026-10-19
 - The default watermark text now follows the app language (English UI no longer starts with Chinese text).
 - "1 page" instead of "1 pages" in the watermark window.
