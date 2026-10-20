@@ -10,8 +10,17 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/cuishuyuan04-art/peel/releases/latest/download/Peel.dmg"><img src="https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD_macOS_%E7%89%88-Peel.dmg-ff8a2a?style=for-the-badge&logo=apple&logoColor=white" alt="下载 Peel"></a>
+  <br>
+  <img src="https://img.shields.io/github/v/release/cuishuyuan04-art/peel?label=%E6%9C%80%E6%96%B0%E7%89%88&color=ff8a2a" alt="最新版本">
+  <img src="https://img.shields.io/badge/macOS-13%2B-555" alt="macOS 13+">
+  <img src="https://img.shields.io/badge/Apple_%E8%8A%AF%E7%89%87_%26_Intel-555" alt="Apple 芯片和 Intel">
+</p>
+
+<p align="center">
   <a href="README.md">English</a> ·
-  <a href="../../releases/latest">下载</a> ·
+  <a href="#下载安装">安装步骤</a> ·
+  <a href="../../releases">历史版本</a> ·
   <a href="CHANGELOG.md">更新日志</a>
 </p>
 
@@ -22,6 +31,17 @@
 <p align="center">
   <img src="Docs/images/wheel-photo-zh.png" width="300" alt="图片的轮盘">
 </p>
+
+## 下载安装
+
+1. **[点这里下载 Peel.dmg](https://github.com/cuishuyuan04-art/peel/releases/latest/download/Peel.dmg)**（永远是最新版；历史版本在 [Releases](../../releases)）。
+2. 打开下载的 DMG，把 **Peel** 拖进 **「应用程序」** 文件夹。
+3. 打开 Peel。第一次会被系统拦下（因为没有经过苹果公证）：
+   打开 **「系统设置 › 隐私与安全性」**，往下找到 Peel 的提示，点 **「仍要打开」**。
+4. 会弹出使用引导：选语言、开启权限、（可选）安装转换组件。以后可以从菜单栏图标 › 使用引导… 再打开。
+
+Peel 住在屏幕右上角的菜单栏里，没有 Dock 图标，也没有主窗口。
+
 
 ## 用法
 
@@ -63,12 +83,7 @@
   <br><sub>设置窗口：长按 / 悬停时长、快捷键、权限</sub>
 </p>
 
-## 安装
-
-1. 在 [Releases](../../releases/latest) 下载 `Peel-版本号.dmg`，把 Peel 拖进「应用程序」。支持 Apple 芯片和 Intel，macOS 13 及以上。
-2. Peel 没有经过苹果公证，第一次打开会被拦下：打开「系统设置 › 隐私与安全性」，往下找到 Peel 的提示，点「仍要打开」。
-3. 会打开一个使用引导：先选语言，再开启权限（见下）、可选安装组件。以后可以从菜单栏图标 › 使用引导… 再打开。
-4. Peel 会询问是否一键安装需要的转换组件（通过 Homebrew），之后也可以在菜单栏图标 › 组件… 里查看。
+## 权限和组件
 
 ### 权限
 

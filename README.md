@@ -10,8 +10,17 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/cuishuyuan04-art/peel/releases/latest/download/Peel.dmg"><img src="https://img.shields.io/badge/Download_for_macOS-Peel.dmg-ff8a2a?style=for-the-badge&logo=apple&logoColor=white" alt="Download Peel for macOS"></a>
+  <br>
+  <img src="https://img.shields.io/github/v/release/cuishuyuan04-art/peel?label=latest&color=ff8a2a" alt="Latest version">
+  <img src="https://img.shields.io/badge/macOS-13%2B-555" alt="macOS 13+">
+  <img src="https://img.shields.io/badge/Apple_silicon_%26_Intel-555" alt="Apple silicon and Intel">
+</p>
+
+<p align="center">
   <a href="README.zh-CN.md">中文说明</a> ·
-  <a href="../../releases/latest">Download</a> ·
+  <a href="#download--install">Install guide</a> ·
+  <a href="../../releases">All releases</a> ·
   <a href="CHANGELOG.md">Changelog</a>
 </p>
 
@@ -24,6 +33,18 @@
   <img src="Docs/images/wheel-photo-convert.png" width="280" alt="Convert sub-menu">
   <img src="Docs/images/wheel-document.png" width="280" alt="Wheel for a Word document">
 </p>
+
+## Download & install
+
+1. **[Download Peel.dmg](https://github.com/cuishuyuan04-art/peel/releases/latest/download/Peel.dmg)** (always the latest version; older ones are under [Releases](../../releases)).
+2. Open the DMG and drag **Peel** into **Applications**.
+3. Open Peel. The first time, macOS blocks it because it isn't notarized by Apple:
+   go to **System Settings › Privacy & Security**, scroll down and click **Open Anyway** next to the Peel message.
+4. A short guide opens: pick your language, grant permissions and (optionally) install the conversion components.
+   Reopen it anytime from the menu bar icon › Getting Started….
+
+Peel lives in the menu bar (top right of the screen) — there's no Dock icon or main window.
+
 
 ## How it works
 
@@ -65,12 +86,7 @@ The wheel only shows what makes sense for that file type — a Word document get
   <br><sub>Settings: hold / hover timings, shortcuts, permissions</sub>
 </p>
 
-## Install
-
-1. Download `Peel-x.y.z.dmg` from [Releases](../../releases/latest) and drag **Peel** into Applications. Works on Apple silicon and Intel, macOS 13 or later.
-2. Peel isn't notarized by Apple, so the first launch is blocked. Open **System Settings › Privacy & Security**, scroll down and click **Open Anyway** next to the Peel message.
-3. A short guide opens: pick your language, grant permissions (below) and optionally install components. Reopen it anytime from the menu bar icon › Getting Started….
-4. Peel offers to install the extra command-line tools it uses in one click (via Homebrew). You can check them anytime under menu-bar icon › Components….
+## Setup details
 
 ### Permissions
 

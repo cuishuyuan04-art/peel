@@ -31,4 +31,6 @@ jobs:
           version="${GITHUB_REF_NAME#v}"
           # Release notes = this version's section of CHANGELOG.md
           awk -v v="$version" '$0 ~ "^## "v" " {on=1; next} /^## / {on=0} on' CHANGELOG.md > notes.md
-          gh release create "$GITHUB_REF_NAME" Build/*.dmg --title "Peel $version" --notes-file notes.md
+          # 另存一份固定文件名，README 的下载按钮永远指向最新版：releases/latest/download/Peel.dmg
+          cp "Build/Peel-$version.dmg" Build/Peel.dmg
+          gh release create "$GITHUB_REF_NAME" "Build/Peel-$version.dmg" Build/Peel.dmg --title "Peel $version" --notes-file notes.md
